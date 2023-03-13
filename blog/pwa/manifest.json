@@ -1,0 +1,19 @@
+{
+  "name": "Zakun Blog",
+  "short_name": "Zakun Blog",
+  "description": "A personal blog by engineer",
+  "icons": [{
+    "src": "icons/zakun.jpeg",
+    "sizes": "128x128",
+    "type": "image/jpeg"
+  }, {
+    "src": "icons/zakun.jpeg",
+    "sizes": "512x512",
+    "type": "image/jpeg"
+  }],
+  "background_color": "#fff",
+  "theme_color": "#000",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
