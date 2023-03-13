@@ -12,7 +12,7 @@ github_repo: "https://github.com/DanielMoreWang/danielmorewang.github.io" # you 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Don't be pushed by your problems. Be led by your dreams."
-sidebar-avatar: /blog/img/personal.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: img/personal.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # SNS settings
