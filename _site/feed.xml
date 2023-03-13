@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yan Wang(王炎)</title>
+    <description>Every failure is leading towards success.</description>
+    <link>http://localhost:4000/blog/</link>
+    <atom:link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 13 Mar 2023 21:28:14 +0800</pubDate>
+    <lastBuildDate>Mon, 13 Mar 2023 21:28:14 +0800</lastBuildDate>
+    <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>全面解析jQuery中$(window)与$(document)的用法区别</title>
+        <description>&lt;h1 id=&quot;window对象&quot;&gt;window对象&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.w3school.com.cn/jsref/dom_obj_window.asp&quot; target=&quot;_blank&quot;&gt;window 对象介绍&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;一jquery中的windowload与documentready的区别&quot;&gt;一、jQuery中的$(window).load()与$(document).ready()的区别&lt;/h2&gt;
+
+&lt;h3 id=&quot;1执行时间&quot;&gt;1.执行时间&lt;/h3&gt;
+
+&lt;p&gt;window.onload()即jquery写法中的$(window).load(function(){})必须等到页面内包括图片的所有元素加载完毕后才能执行。
+$(document).ready()是DOM结构绘制完毕后就执行，不必等到加载完毕。&lt;/p&gt;
+
+&lt;h3 id=&quot;2编写个数不同&quot;&gt;2.编写个数不同&lt;/h3&gt;
+
+&lt;p&gt;window.onload不能同时编写多个，如果有多个window.onload方法，只会执行一个(最后一个)
+$(document).ready()可以同时编写多个，并且都可以得到执行&lt;/p&gt;
+
+&lt;h3 id=&quot;3简化写法&quot;&gt;3.简化写法&lt;/h3&gt;
+
+&lt;p&gt;window.onload没有简化写法
+$(document).ready(function(){})可以简写成$(function(){});&lt;/p&gt;
+
+&lt;h2 id=&quot;二windowheight和documentheight的区别&quot;&gt;二、$(window).height()和$(document).height()的区别&lt;/h2&gt;
+
+&lt;p&gt;jQuery(window).height()代表了当前可见区域的大小，
+jQuery(document).height()则代表了整个文档的高度，可视具体情况使用.&lt;/p&gt;
+
+&lt;p&gt;注意：当浏览器窗口大小改变时(如最大化或拉大窗口后) ，
+jQuery(window).height() 随之改变，但是
+jQuery(document).height()是不变的。&lt;/p&gt;
+
+&lt;h2 id=&quot;三windowscroll和documentscroll的区别&quot;&gt;三、$(window).scroll()和$(document).scroll()的区别&lt;/h2&gt;
+
+&lt;h3 id=&quot;1scroll定义和用法&quot;&gt;1、scroll()定义和用法：&lt;/h3&gt;
+
+&lt;p&gt;当用户滚动指定的元素时，会发生 scroll 事件。
+scroll 事件适用于所有可滚动的元素和 window 对象（浏览器窗口）。&lt;/p&gt;
+
+&lt;h3 id=&quot;2两者在使用效果上区别不大但所有浏览器基本都支持windowscroll但documentscroll就不一定了&quot;&gt;2、两者在使用效果上区别不大，但所有浏览器基本都支持$(window).scroll()，但$(document).scroll()就不一定了。&lt;/h3&gt;
+
+&lt;h2 id=&quot;四windowscrolltop和documentscrolltop的区别&quot;&gt;四、$(window).scrollTop()和$(document).scrollTop()的区别&lt;/h2&gt;
+
+&lt;h3 id=&quot;1scrolltop定义和用法&quot;&gt;1、scrollTop()定义和用法：&lt;/h3&gt;
+
+&lt;p&gt;scrollTop() 方法返回或设置匹配元素的滚动条的垂直位置（即：滚动条最上方与该元素顶部的距离）。
+输入参数比如： $(window).scrollTop(100)，将垂直位置设置为100px;
+不输入参数比如： $(window).scrollTop(100)，返回匹配元素的滚动条的垂直位置。&lt;/p&gt;
+
+&lt;h3 id=&quot;2windowscrolltop和documentscrolltop两者在使用效果上区别不大但所有浏览器基本都支持前者但后者就不一定了&quot;&gt;2、$(window).scrollTop()和$(document).scrollTop()两者在使用效果上区别不大，但所有浏览器基本都支持前者，但后者就不一定了。&lt;/h3&gt;
+
+&lt;p&gt;附：一个返回顶部功能，对以上知识的应用&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$(function(){
+ &quot;use strict&quot;;
+ var backButton=$(&apos;.back-to-top &apos;);//css中请事先将按钮隐藏
+ //返回顶部按钮点击事件
+ backButton.on(&apos;click&apos;,function(){
+ $(&apos;html,body&apos;).animate({
+ scrollTop:0
+ },800)
+ });
+ //窗口向下滚动一屏后显示‘返回顶部按钮&apos;
+ $(window).on(&apos;scroll&apos;,function(){
+ if($(window).scrollTop() &amp;gt; $(window).height())
+ backButton.fadeIn();
+ else
+ backButton.fadeOut();
+ })
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Wed, 22 May 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/blog/2019/05/22/%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90jQuery%E4%B8%AD%E7%9A%84window%E4%B8%8Edocument%E7%9A%84%E7%94%A8%E6%B3%95%E5%8C%BA%E5%88%AB/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2019/05/22/%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90jQuery%E4%B8%AD%E7%9A%84window%E4%B8%8Edocument%E7%9A%84%E7%94%A8%E6%B3%95%E5%8C%BA%E5%88%AB/</guid>
+        
+        <category>jquery</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Working With LOBs In Oracle And PHP</title>
+        <description>&lt;h1 id=&quot;the-oracle--php-cookbook&quot;&gt;The Oracle + PHP Cookbook&lt;/h1&gt;
+
+&lt;h2 id=&quot;working-with-lobs-in-oracle-and-php&quot;&gt;Working with LOBs in Oracle and PHP&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.oracle.com/technetwork/articles/fuecks-lobs-095315.html&quot; target=&quot;_blank&quot;&gt;原文链接&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;hitting-the-4000-byte-limit-enter-lobs&quot;&gt;Hitting the 4,000-byte limit? Enter LOBs…&lt;/h3&gt;
+
+&lt;p&gt;Downloads for this article:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Oracle Database 10g&lt;/li&gt;
+  &lt;li&gt;Zend Core for Oracle&lt;/li&gt;
+  &lt;li&gt;Apache HTTP Server 1.3 and later
+Working with Oracle types like VARCHAR2 is fine, but what if you need to be able to store more than its 4,000-byte limit in one go? For this task, you need one of Oracle’s Long Object (LOB) types, which in turn requires that you learn how to use the PHP API for working with LOBs. That in itself can be daunting for those unfamiliar with it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this “Oracle+PHP Cookbook” HowTo, you will learn the available LOB types and issues related to them, then explore examples of common LOB operations in PHP.&lt;/p&gt;
+
+&lt;p&gt;Long Objects in Oracle&lt;/p&gt;
+
+&lt;p&gt;Oracle provides the following LOB types:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;BLOB, used to store binary data&lt;/li&gt;
+  &lt;li&gt;CLOB, used to store character data using the database character set encoding&lt;/li&gt;
+  &lt;li&gt;NCLOB, used to store Unicode character data using the national character set. Note that NCLOBs are, currently, not supported by the PHP OCI8 extension, which you’ll be using here.&lt;/li&gt;
+  &lt;li&gt;BFILE, used to reference external files under the operating system’s filesystem&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A further subcategory of LOB is the temporary LOB, which can be either a BLOB, CLOB, or NCLOB but is stored in the temporary tablespace until you free it.
+Note that older versions of Oracle provided the LONG and LONG RAW types for character and binary data, respectively. With Oracle9i these were deprecated in favor of LOBs.&lt;/p&gt;
+
+&lt;p&gt;LOB storage. For the BLOB, CLOB, and NCLOB types, Oracle Database 10g is capable of storing up to 128TB in a single value, depending on your database block size and the “chunk” setting, defined for the LOB.&lt;/p&gt;
+
+&lt;p&gt;A LOB itself comprises two elements: the LOB content and the LOB locator, which is a “pointer” to the LOB content. This separation is required to allow Oracle to store and manage LOBs efficiently and it is reflected in the PHP APIs you use to INSERT, UPDATE, and SELECT LOBs (see below).&lt;/p&gt;
+
+&lt;p&gt;For the internal LOB types (i.e. not BFILEs) Oracle will store the content of the LOB “in-line” in the table, with the rest of the row, if the size of the LOB is less than 4KB. LOBs larger than 4KB are stored “out-of-line,” by default in the table’s tablespace. This approach allows small LOBs to be retrieved quickly while, for large LOBs, access times will be slower but overall performance, when scanning the table, is preserved.&lt;/p&gt;
+
+&lt;p&gt;There are further options for LOB storage and access—such as memory caching and buffering—which may improve performance, depending on the specifics of your application. For further information see the LOB Performance Guidelines and the Oracle Database Application Developer’s Guide - Large Objects in the Oracle documentation.&lt;/p&gt;
+
+&lt;p&gt;Restrictions on LOBs. A number of restrictions apply to the use of LOB types, the most important being their use in SQL statements. You cannot use a LOB type in any of the following queries.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SELECT DISTINCT &amp;lt;lob_type&amp;gt;
+ORDER BY &amp;lt;lob_type&amp;gt;
+GROUP BY &amp;lt;lob_col&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It is also illegal to use a LOB type column for table joins, UNION, INTERSECTION, and MINUS statements.
+Further restrictions apply to other aspects of the use of LOBs, such as you cannot use LOB as a primary key column. Again, see &lt;a href=&quot;http://download.oracle.com/docs/cd/B19306_01/appdev.102/b14249/toc.htm&quot;&gt;Oracle Database Application Developer’s Guide&lt;/a&gt; - Large Objects for details.&lt;/p&gt;
+
+&lt;h3 id=&quot;clobs-and-character-sets&quot;&gt;CLOBs and Character Sets&lt;/h3&gt;
+
+&lt;p&gt;The default character set for your database is defined by the parameter NLS_CHARACTERSET and text placed in a CLOB is expected to be encoded using this character set. Use this SQL to determine your databases character set encoding:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SELECT value FROM nls_database_parameters WHERE parameter = &apos;NLS_CHARACTERSET&apos;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Given lack of support for NCLOBs in PHP, you may want to consider using Unicode encoding as the database character, such as UTF-8, which can be done (given sufficient privileges) using the statement:
+ALTER DATABASE CHARACTER SET UTF8
+Note: do not attempt this without understanding the impact, especially if you have existing data or application code using a different character set. See the Oracle Globalization Support Guide and An Overview on Globalizing Oracle PHP Applications for more information.
+Working with LOBs&lt;/p&gt;
+
+&lt;p&gt;The discussion here will focus on PHP’s OCI8 extension. It’s also worth noting that Oracle provides the DBMS_LOB package, containing parallel procedures and functions for working with LOBs using PL/SQL.&lt;/p&gt;
+
+&lt;p&gt;The PHP OCI8 extension registers a PHP class called “OCI-Lob” in the global PHP namespace. When you execute a SELECT statement, for example, where one of columns is a LOB type, PHP will bind this automatically to an OCI-Lob object instance. Once you have a reference to an OCI-Lob object, you can then call methods like load() and save() to access or modify the contents of the LOB.&lt;/p&gt;
+
+&lt;p&gt;The available OCI-Lob methods will depend on your PHP version, PHP5 in particular having gained methods like read() , seek() , and append() . The PHP Manual is a little unclear, in this case, on the version numbers so if in doubt you can verify using the following script.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;?php
+foreach (get_class_methods(&apos;OCI-Lob&apos;) as $method ) {
+	print &quot;OCI-Lob::$method()\n&quot;;
+}
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;On my system, running PHP 5.0.5, I get the following list of methods:&lt;/p&gt;
+
+&lt;p&gt;OCI-Lob::load()
+OCI-Lob::tell()
+OCI-Lob::truncate()
+OCI-Lob::erase()
+OCI-Lob::flush()
+OCI-Lob::setbuffering()
+OCI-Lob::getbuffering()
+OCI-Lob::rewind()
+OCI-Lob::read()
+OCI-Lob::eof()
+OCI-Lob::seek()
+OCI-Lob::write()
+OCI-Lob::append()
+OCI-Lob::size()
+OCI-Lob::writetofile()
+OCI-Lob::writetemporary()
+OCI-Lob::close()
+OCI-Lob::save()
+OCI-Lob::savefile()
+OCI-Lob::free()&lt;/p&gt;
+
+&lt;p&gt;In practice, the PHP 4.x OCI8 extension supports reading or writing of complete LOBs only, which is the most common use case in a Web application. PHP5 extends this to allow reading and writing of “chunks” of a LOB as well as supporting LOB buffering with the methods setBuffering() and getBuffering() . PHP5 also provides the stand-alone functions oci_lob_is_equal() and oci_lob_copy() .
+The examples here will use the new PHP5 OCI function names (e.g. oci_parse instead of OCIParse ). Examples use the following sequence and table:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CREATE SEQUENCE mylobs_id_seq
+	NOMINVALUE
+	NOMAXVALUE
+	NOCYCLE
+	CACHE 20
+	NOORDER
+INCREMENT BY 1;
+
+CREATE TABLE mylobs (
+	id NUMBER PRIMARY KEY,
+	mylob CLOB
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that most of the examples here use CLOBs but the same logic can be applied almost exactly to BLOBs as well.
+Inserting a LOB&lt;/p&gt;
+
+&lt;p&gt;To INSERT an internal LOB, you first need to initialize the LOB using the respective Oracle EMPTY_BLOB or EMPTY_CLOB functions—you cannot update a LOB that contains a NULL value.&lt;/p&gt;
+
+&lt;p&gt;Once initialized, you then bind the column to a PHP OCI-Lob object and update the LOB content via the object’s save() method.&lt;/p&gt;
+
+&lt;p&gt;The following script provides an example, returning the LOB type from the INSERT query:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;?php
+// connect to DB etc...
+
+$sql = &quot;INSERT INTO
+		mylobs
+		  (
+			id,
+			mylob
+		  )
+	   VALUES
+		  (
+			mylobs_id_seq.NEXTVAL,
+			--Initialize as an empty CLOB
+			EMPTY_CLOB()
+		  )
+	   RETURNING
+		  --Return the LOB locator
+		  mylob INTO :mylob_loc&quot;;
+
+$stmt = oci_parse($conn, $sql);
+
+// Creates an &quot;empty&quot; OCI-Lob object to bind to the locator
+$myLOB = oci_new_descriptor($conn, OCI_D_LOB);
+
+// Bind the returned Oracle LOB locator to the PHP LOB object
+oci_bind_by_name($stmt, &quot;:mylob_loc&quot;, $myLOB, -1, OCI_B_CLOB);
+
+// Execute the statement using , OCI_DEFAULT - as a transaction
+oci_execute($stmt, OCI_DEFAULT)
+	or die (&quot;Unable to execute query\n&quot;);
+
+// Now save a value to the LOB
+if ( !$myLOB-&amp;gt;save(&apos;INSERT: &apos;.date(&apos;H:i:s&apos;,time())) ) {
+
+	// On error, rollback the transaction
+	oci_rollback($conn);
+
+} else {
+
+	// On success, commit the transaction
+	oci_commit($conn);
+
+}
+
+// Free resources
+oci_free_statement($stmt);
+$myLOB-&amp;gt;free();
+
+
+// disconnect from DB etc.
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice how this example uses a transaction, instructing oci_execute with OCI_DEFAULT constant to wait for an oci_commit or an oci_rollback . This is important as I have two stages taking place in the INSERT—first create the row and second update the LOB.
+Note that if I was working with a BLOB type, the only change needed (assuming a BLOB column) is to the oci_bind_by_name call:&lt;/p&gt;
+
+&lt;p&gt;oci_bind_by_name($stmt, “:mylob_loc”, $myLOB, -1, OCI_B_BLOB);
+Alternatively, you can bind a string directly without specifying a LOB type;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;?php
+// etc.
+
+$sql = &quot;INSERT INTO
+		  mylobs
+		  (
+			id,
+			mylob
+		  )
+		VALUES
+		  (
+			mylobs_id_seq.NEXTVAL,
+			:string
+		  )
+&quot;;
+
+$stmt = oci_parse($conn, $sql);
+
+$string = &apos;INSERT: &apos;.date(&apos;H:i:s&apos;,time());
+
+oci_bind_by_name($stmt, &apos;:string&apos;, $string);
+
+oci_execute($stmt)
+	or die (&quot;Unable to execute query\n&quot;);
+
+// etc.
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This approach simplifies the code significantly and is suitable when the data your want to write to the LOB is relatively small. In contrast, if you wished to stream the contents of the large file into a LOB, you might loop through the contents of the file calling write() and flush() on the PHP LOB object to write smaller chunks rather than having the entire file held in memory at a single instance.
+Selecting a LOB&lt;/p&gt;
+
+&lt;p&gt;When a SELECT query contains a LOB column, PHP will automatically bind the column to an OCI-Lob object. For example:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;?php
+// etc.
+
+$sql = &quot;SELECT
+		  *
+		FROM
+		  mylobs
+		ORDER BY
+		  Id
+&quot;;
+
+$stmt = oci_parse($conn, $sql);
+
+oci_execute($stmt)
+	or die (&quot;Unable to execute query\n&quot;);
+
+while ( $row = oci_fetch_assoc($stmt) ) {
+	print &quot;ID: {$row[&apos;ID&apos;]}, &quot;;
+
+	// Call the load() method to get the contents of the LOB
+	print $row[&apos;MYLOB&apos;]-&amp;gt;load().&quot;\n&quot;;
+}
+
+// etc.
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This can be further simplified using the OCI_RETURN_LOBS constant, used with oci_fetch_array(), instructing it to replace LOB objects with their values:
+while ( $row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_LOBS) ) {
+    print “ID: {$row[‘ID’]}, {$row[‘MYLOB’]}\n”;
+}
+Updating a LOB
+To UPDATE a LOB, it’s also possible to use the “RETURNING” command in the SQL, as with the above INSERT example, but a simpler approach is to SELECT … FOR UPDATE:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;?php
+// etc.
+
+$sql = &quot;SELECT
+		   mylob
+		FROM
+		   mylobs
+		WHERE
+		   id = 3
+		FOR UPDATE /* locks the row */
+&quot;;
+
+$stmt = oci_parse($conn, $sql);
+
+// Execute the statement using OCI_DEFAULT (begin a transaction)
+oci_execute($stmt, OCI_DEFAULT)
+	or die (&quot;Unable to execute query\n&quot;);
+
+// Fetch the SELECTed row
+if ( FALSE === ($row = oci_fetch_assoc($stmt) ) ) {
+	oci_rollback($conn);
+	die (&quot;Unable to fetch row\n&quot;);
+}
+
+// Discard the existing LOB contents
+if ( !$row[&apos;MYLOB&apos;]-&amp;gt;truncate() ) {
+	oci_rollback($conn);
+	die (&quot;Failed to truncate LOB\n&quot;);
+}
+
+// Now save a value to the LOB
+if ( !$row[&apos;MYLOB&apos;]-&amp;gt;save(&apos;UPDATE: &apos;.date(&apos;H:i:s&apos;,time()) ) ) {
+
+	// On error, rollback the transaction
+	oci_rollback($conn);
+
+} else {
+
+	// On success, commit the transaction
+	oci_commit($conn);
+
+}
+
+// Free resources
+oci_free_statement($stmt);
+$row[&apos;MYLOB&apos;]-&amp;gt;free();
+
+
+// etc.
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As with the INSERT, I need to perform the UPDATE using a transaction. An important additional step is the call to truncate() . When updating a LOB with save(), it will replace the contents of the LOB beginning from the start up to the length of the new data. That means older content (if it was longer than the new content) may still be left in the LOB.
+For PHP 4.x, where truncate() is unavailable, the following alternative solution uses Oracle’s EMPTY_CLOB() function to erase any existing contents in the LOB before saving new data to it.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$sql = &quot;UPDATE
+		   mylobs
+		SET
+			mylob = EMPTY_CLOB()
+		WHERE
+		   id = 2403
+		RETURNING
+			mylob INTO :mylob
+&quot;;
+
+$stmt = OCIParse($conn, $sql);
+
+$mylob = OCINewDescriptor($conn,OCI_D_LOB);
+
+OCIBindByName($stmt,&apos;:mylob&apos;,$mylob, -1, OCI_B_CLOB);
+
+// Execute the statement using OCI_DEFAULT (begin a transaction)
+OCIExecute($stmt, OCI_DEFAULT)
+	or die (&quot;Unable to execute query\n&quot;);
+
+if ( !$mylob-&amp;gt;save( &apos;UPDATE: &apos;.date(&apos;H:i:s&apos;,time()) ) ) {
+
+	OCIRollback($conn);
+	die(&quot;Unable to update lob\n&quot;);
+
+}
+
+OCICommit($conn);
+$mylob-&amp;gt;free();
+OCIFreeStatement($stmt);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;working-with-bfiles&quot;&gt;Working with BFILES&lt;/h3&gt;
+&lt;p&gt;When using the BFILE type, INSERTs and UPDATEs mean telling Oracle where the file is located within the filesystem of the database server (which may not be the same machine as the Web server), rather than passing the file content. Using a SELECT statement, you can read the contents of the BFILE through Oracle, should you so desire, or call functions and procedures from the DBMS_LOB package to get information about the file.&lt;/p&gt;
+
+&lt;p&gt;The main advantage of BFILEs is being able to access the original files directly from the filesystem while still being able to locate files using SQL. This means, for example, images can be served directly by the Web server while I can keep track of the relationship between the table containing the BFILES and, say, a “users” table, telling me who uploaded the files.&lt;/p&gt;
+
+&lt;p&gt;As an example, I first need to update the table schema used above;&lt;/p&gt;
+
+&lt;p&gt;ALTER TABLE mylobs ADD( mybfile BFILE )
+Next I need to register a directory alias with Oracle (this requires administrative privileges) and grant permissions to read it:
+CREATE DIRECTORY IMAGES_DIR AS ‘/home/harryf/public_html/images’
+GRANT READ ON DIRECTORY IMAGES_DIR TO scott
+I can now INSERT some BFILE names like:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;?php
+// etc.
+
+// Build an INSERT for the BFILE names
+$sql = &quot;INSERT INTO
+		mylobs
+		  (
+			id,
+			mybfile
+		  )
+	   VALUES
+		  (
+			mylobs_id_seq.NEXTVAL,
+			/*
+			Pass the file name using the Oracle directory reference
+			I created called IMAGES_DIR
+			*/
+			BFILENAME(&apos;IMAGES_DIR&apos;,:filename)
+		  )&quot;;
+
+$stmt = oci_parse($conn, $sql);
+
+// Open the directory
+$dir = &apos;/home/harryf/public_html/images&apos;;
+$dh = opendir($dir)
+	or die(&quot;Unable to open $dir&quot;);
+
+// Loop through the contents of the directory
+while (false !== ( $entry = readdir($dh) ) ) {
+
+	// Match only files with the extension .jpg, .gif or .png
+	if ( is_file($dir.&apos;/&apos;.$entry) &amp;amp;&amp;amp; preg_match(&apos;/\.(jpg|gif|png)$/&apos;,$entry) ) {
+
+		// Bind the filename of the statement
+		oci_bind_by_name($stmt, &quot;:filename&quot;, $entry);
+
+		// Execute the statement
+		if ( oci_execute($stmt) ) {
+			print &quot;$entry added\n&quot;;
+		}
+	}
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If I need to, I can read the BFILE content through Oracle using the same approach as above where I selected CLOBs. Alternatively, if I need to get the filenames back so I can access them directly from the filesystem, I can call the DBMS_LOB.FILEGETNAME procedure like:
+	&amp;lt;?php
+	// etc.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$sql = &quot;SELECT
+		  id
+		FROM
+		  mylobs
+		WHERE
+		  -- Select only BFILES which are not null
+		  mybfile IS NOT NULL;
+
+$stmt1 = oci_parse($conn, $sql);
+
+oci_execute($stmt1)
+	or die (&quot;Unable to execute query\n&quot;);
+
+$sql = &quot;DECLARE
+		  locator BFILE;
+		  diralias VARCHAR2(30);
+		  filename VARCHAR2(30);
+
+		BEGIN
+
+		  SELECT
+			mybfile INTO locator
+		  FROM
+			mylobs
+		  WHERE
+			id = :id;
+
+		  -- Get the filename from the BFILE
+		  DBMS_LOB.FILEGETNAME(locator, diralias, filename);
+
+		  -- Assign OUT params to bind parameters
+		  :diralias:=diralias;
+		  :filename:=filename;
+
+	   END;&quot;;
+
+$stmt2 = oci_parse($conn, $sql);
+
+while ( $row = oci_fetch_assoc ($stmt1) ) {
+
+	oci_bind_by_name($stmt2, &quot;:id&quot;, $row[&apos;ID&apos;]);
+	oci_bind_by_name ($stmt2, &quot;:diralias&quot;, $diralias,30);
+	oci_bind_by_name ($stmt2, &quot;:filename&quot;, $filename,30);
+
+	oci_execute($stmt2);
+	print &quot;{$row[&apos;ID&apos;]}: $diralias/$filename\n&quot;;
+
+}
+// etc.
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Furthermore, you can use the DBMS_LOB.FILEEXISTS function to discover which files have been deleted via the operating system but are still referenced in the database.
+Conclusion&lt;/p&gt;
+
+&lt;p&gt;In this HowTo you have been introduced to the different types of LOBs available in Oracle Database 10g and hopefully now understand their role in allowing large data entities to be stored efficiently in the database. You have also learned how to work with LOBs using PHP’s OCI8 API, covering the common use cases you will encounter while developing with Oracle and PHP.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 13 May 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/blog/2019/05/13/Working-With-LOBs-In-Oracle-And-PHP/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2019/05/13/Working-With-LOBs-In-Oracle-And-PHP/</guid>
+        
+        <category>oracle</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Jquery 悬浮层</title>
+        <description>&lt;h1 id=&quot;jquery实现悬浮层&quot;&gt;JQuery实现悬浮层&lt;/h1&gt;
+
+&lt;p&gt;这里是Juqery实现的一个简单事例，另外还有个 &lt;strong&gt;&lt;a href=&quot;https://github.com/garand/sticky&quot;&gt;stickjs&lt;/a&gt;&lt;/strong&gt; 的悬浮元素的Jquery源码插件&lt;/p&gt;
+
+&lt;h2 id=&quot;1html代码&quot;&gt;1、HTML代码&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;div id=&quot;fudong&quot; style=&quot;border:1px solid #454545; width:50px; height:100px; position: absolute; right: 20px; top: 100px;&quot;&amp;gt;
+	右侧悬浮层
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2js脚本&quot;&gt;2、JS脚本&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$(function() {
+	var timer, scrollTop, sideDiv = $(&apos;#fudong&apos;).appendTo(&apos;body&apos;);
+	$(window).scroll(function() {
+		timer &amp;amp;&amp;amp; clearTimeout(timer);
+		scrollTop = $(this).scrollTop();
+		timer = setTimeout(function() {
+			sideDiv.animate({
+				top: scrollTop + 100 + &apos;px&apos;
+			}, 600);
+		}, 200);
+	});
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Mon, 06 May 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/blog/2019/05/06/jquery%E6%82%AC%E6%B5%AE%E5%B1%82/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2019/05/06/jquery%E6%82%AC%E6%B5%AE%E5%B1%82/</guid>
+        
+        <category>jquery</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Linux查看及修改机器名称</title>
+        <description>&lt;h1 id=&quot;linux查看及修改机器名称&quot;&gt;Linux查看及修改机器名称&lt;/h1&gt;
+
+&lt;p&gt;经常需要在VMWare中复制虚拟机，对于复制的新机器需要修改机器名称，不然在同一局域网中就发生冲突了，下面是在Linux系统下查看及修改机器名称的方法及步骤：&lt;/p&gt;
+
+&lt;h2 id=&quot;1查看系统的机器名称&quot;&gt;1.查看系统的机器名称：&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;使用root用户登录，在终端控制台输入： hostname
+
+[root@linuxidc ]# hostname
+
+linuxidc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2临时修改机器名称&quot;&gt;2.临时修改机器名称：&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@linuxidc ]# hostname yourname
+
+[root@linuxidc ]# hostname
+
+yourname
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;注：不过第2步的修改只能临时有效，机器重启又还原了，想要让修改永久生效，还要继续下面的步骤：&lt;/p&gt;
+
+&lt;h2 id=&quot;3修改hosts-文件路径etchosts&quot;&gt;3.修改hosts 文件（路径：/etc/hosts）：&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@linuxidc ]# vi /etc/hosts
+
+把hosts里面所有原来的名称改成你想改成的名称，此外，还需要特别注意的是，hosts文件里面的ip必须改成系统现在拥有的ip（ip查询方式：# ifconfig）
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;4修改network文件路径etcsysconfignetwork&quot;&gt;4.修改network文件（路径：/etc/sysconfig/network）：&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@linuxidc ]# vi /etc/sysconfig/network
+
+把里面的hostname=XXX 中XXX改成你想改成的名称
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;5重启机器&quot;&gt;5.重启机器：&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[root@linuxidc ]# reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Sun, 05 May 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/blog/2019/05/05/linux%E6%9F%A5%E7%9C%8B%E4%BF%AE%E6%94%B9%E6%9C%BA%E5%99%A8%E5%90%8D%E7%A7%B0/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2019/05/05/linux%E6%9F%A5%E7%9C%8B%E4%BF%AE%E6%94%B9%E6%9C%BA%E5%99%A8%E5%90%8D%E7%A7%B0/</guid>
+        
+        <category>linux</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Markdown 语法测试用例</title>
+        <description>&lt;p&gt;写过博客或者github上面的文档的，应该知道Markdown语法的重要性，不知道的朋友们也别着急，一篇博客轻松搞定Markdown语法。话说这个语法超级简单，一看就会，不信你点进来看看。&lt;/p&gt;
+
+&lt;h1 id=&quot;1基本语法&quot;&gt;1.基本语法&lt;/h1&gt;
+
+&lt;h2 id=&quot;11-标题&quot;&gt;1.1 标题&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#  H1
+##  H2
+###  H3
+####  H4
+#####  H5
+######  H6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;效果：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;h1 id=&quot;h1&quot;&gt;H1&lt;/h1&gt;
+  &lt;h2 id=&quot;h2&quot;&gt;H2&lt;/h2&gt;
+  &lt;h3 id=&quot;h3&quot;&gt;H3&lt;/h3&gt;
+  &lt;h4 id=&quot;h4&quot;&gt;H4&lt;/h4&gt;
+  &lt;h5 id=&quot;h5&quot;&gt;H5&lt;/h5&gt;
+  &lt;h6 id=&quot;h6&quot;&gt;H6&lt;/h6&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;另外，H1和H2还能用以下方式显示：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;这是一级标题
+===
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;效果：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;这是一级标题
+ ===&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;这是二级标题
+---
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;效果：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;h2 id=&quot;这是二级标题&quot;&gt;这是二级标题&lt;/h2&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;12-字体设置粗体斜体删除线&quot;&gt;1.2 字体设置粗体、斜体、删除线&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;**粗体abc** ，__粗体abc__  
+*斜体abc* ， _斜体abc_  
+~~删除线abc~~
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;效果：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;粗体abc&lt;/strong&gt; ，&lt;strong&gt;粗体abc&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;斜体abc&lt;/em&gt; ， &lt;em&gt;斜体abc&lt;/em&gt;&lt;br /&gt;
+&lt;del&gt;删除线abc&lt;/del&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;12-列表&quot;&gt;1.2 列表&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Unsordered 无序列表：&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  * 无序列表
+  * 子项
+  * 子项
+     
+  + 无序列表
+  + 子项
+  + 子项
+     
+  - 无序列表
+  - 子项
+  - 子项
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;效果：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;无序列表&lt;/li&gt;
+    &lt;li&gt;子项&lt;/li&gt;
+    &lt;li&gt;子项&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;无序列表&lt;/li&gt;
+    &lt;li&gt;子项&lt;/li&gt;
+    &lt;li&gt;子项&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;无序列表&lt;/li&gt;
+    &lt;li&gt;子项&lt;/li&gt;
+    &lt;li&gt;子项&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;有序列表：&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;第一行&lt;/li&gt;
+      &lt;li&gt;第二行&lt;/li&gt;
+      &lt;li&gt;第三行&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;效果：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;第一行&lt;/li&gt;
+    &lt;li&gt;第二行&lt;/li&gt;
+    &lt;li&gt;第三行&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;组合：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* 产品介绍（子项无项目符号）
+    此时子项，要以一个制表符或者4个空格缩进
+ 
+* 产品特点
+    1. 特点1
+    - 特点2
+    - 特点3
+* 产品功能
+    1. 功能1
+    - 功能2
+    - 功能3 **效果：**
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;p&gt;产品介绍（子项无项目符号）&lt;br /&gt;
+ 此时子项，要以一个制表符或者4个空格缩进&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;产品特点
+      &lt;ol&gt;
+        &lt;li&gt;特点1
+          &lt;ul&gt;
+            &lt;li&gt;特点2&lt;/li&gt;
+            &lt;li&gt;特点3&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;产品功能
+      &lt;ol&gt;
+        &lt;li&gt;功能1
+          &lt;ul&gt;
+            &lt;li&gt;功能2&lt;/li&gt;
+            &lt;li&gt;功能3&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;13-链接&quot;&gt;1.3 链接&lt;/h2&gt;
+&lt;p&gt;Inline-style 内嵌方式：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[link text](https://www.baidu.com&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://www.baidu.com&quot; title=&quot;title text&quot;&gt;link text&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Reference-style 引用方式：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[link text][id]
+
+[id]: https://www.baidu.com &quot;title text&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://www.baidu.com&quot; title=&quot;title text&quot;&gt;link text&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Relative reference to a repository file 引用存储文件：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[link text](../path/file/readme.text &quot;title text&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;还能这样使用：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[link text][]
+
+[link text]: https://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://www.baidu.com&quot;&gt;link text&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Email 邮件：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Email &amp;lt;example@example.com&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Email&lt;a href=&quot;mailto:example@example.com&quot;&gt;example@example.com&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;14-images-图片&quot;&gt;1.4 Images 图片&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Inline-style 内嵌方式：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &quot;title text&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;img src=&quot;https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png&quot; alt=&quot;alt text&quot; title=&quot;title text&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Reference-style 引用方式：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![alt text][logo]
+
+[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &quot;title text&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;img src=&quot;https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png&quot; alt=&quot;alt text&quot; title=&quot;title text&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;15-code-and-syntax-highlighting-代码和语法高亮&quot;&gt;1.5 Code and Syntax Highlighting 代码和语法高亮&lt;/h2&gt;
+&lt;p&gt;标记一小段行内代码：&lt;/p&gt;
+
+&lt;p&gt;本文是一篇介绍&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Markdown&lt;/code&gt;的语法的文章&lt;/p&gt;
+
+&lt;p&gt;如果高亮的内容包含`号，可以这样写：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;`` `包裹起来` ``
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;语法高亮：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```html
+    &amp;lt;div&amp;gt;Syntax Highlighting&amp;lt;/div&amp;gt;
+```
+```css
+    body{font-size:12px}
+```
+ 
+```javascript
+    var s = &quot;JavaScript syntax highlighting&quot;;
+    alert(s);
+```
+```php
+    &amp;lt;?php
+      echo &quot;hello, world!&quot;;
+    ?&amp;gt;
+```
+```python
+    s = &quot;Python syntax highlighting&quot;
+    print s
+``` &amp;gt;```html &amp;gt;    &amp;lt;div&amp;gt;Syntax Highlighting&amp;lt;/div&amp;gt; &amp;gt;``` &amp;gt;```css &amp;gt;    body{font-size:12px} &amp;gt;``` &amp;gt;  &amp;gt;```javascript &amp;gt;    var s = &quot;JavaScript syntax highlighting&quot;; &amp;gt;    alert(s); &amp;gt;``` &amp;gt;```php &amp;gt;    &amp;lt;?php &amp;gt;      echo &quot;hello, world!&quot;; &amp;gt;    ?&amp;gt; &amp;gt;``` &amp;gt;```python &amp;gt;    s = &quot;Python syntax highlighting&quot; &amp;gt;    print s &amp;gt;```
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;16-block-code-代码分组代码区块&quot;&gt;1.6 Block Code 代码分组(代码区块)：&lt;/h2&gt;
+
+&lt;p&gt;在该行开头缩进4个空格或一个制表符(tab)&lt;/p&gt;
+
+&lt;h2 id=&quot;17-blockquotes-引用&quot;&gt;1.7 &lt;strong&gt;Blockquotes 引用：&lt;/strong&gt;&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; Email-style angle brackets
+&amp;gt; are used for blockquotes.
+&amp;gt; &amp;gt; And, they can be nested.
+&amp;gt; #### Headers in blockquotes
+&amp;gt; * You can quote a list.
+&amp;gt; * Etc.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Email-style angle brackets&lt;br /&gt;
+are used for blockquotes.&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;And, they can be nested.&lt;/p&gt;
+    &lt;h4 id=&quot;headers-in-blockquotes&quot;&gt;Headers in blockquotes&lt;/h4&gt;
+    &lt;ul&gt;
+      &lt;li&gt;You can quote a list.&lt;/li&gt;
+      &lt;li&gt;Etc.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;18-hard-line-breaks-换行&quot;&gt;1.8 Hard Line Breaks 换行：&lt;/h2&gt;
+&lt;p&gt;在一行的结尾处加上2个或2个以上的空格，也可以使用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;/br&amp;gt;&lt;/code&gt;标签&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;第一行文字&amp;lt;br&amp;gt;第二行文字
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;第一行文字&lt;br /&gt;第二行文字&lt;/p&gt;
+
+&lt;h2 id=&quot;19-horizontal-rules-水平分割线&quot;&gt;1.9 Horizontal Rules 水平分割线：&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;***
+---
+* * *
+- - -
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;hr /&gt;
+  &lt;hr /&gt;
+  &lt;hr /&gt;
+  &lt;hr /&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;111-escape-character-转义符反斜杠&quot;&gt;1.11 Escape character 转义符(反斜杠)：&lt;/h2&gt;
+&lt;p&gt;Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，例如：如果你想要用星号加在文字旁边的方式来做出强调效果，你可以在星号的前面加上反斜杠：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\*literal asterisks\*
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;*literal asterisks*&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：
+\反斜杠  `反引号  *星号  _下划线  {}花括号  []方括号  ()括弧  #井字号  +加号  -减号  .英文句 !感叹号&lt;/p&gt;
+
+&lt;h2 id=&quot;110-资源&quot;&gt;1.10 资源&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://daringfireball.net/projects/markdown/&quot;&gt;Markdown官网&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://markdown.tw/&quot;&gt;Markdown台湾&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://markdown-here.com/livedemo.html&quot;&gt;Markdown在线编辑器&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://help.github.com/en/categories/writing-on-github&quot;&gt;GitHub支持的Markdown语法&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 29 Apr 2019 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/blog/2019/04/29/Markdown-%E8%AF%AD%E6%B3%95%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2019/04/29/Markdown-%E8%AF%AD%E6%B3%95%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/</guid>
+        
+        <category>markdown</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
