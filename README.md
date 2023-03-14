@@ -1,1 +1,0 @@
-Welcome Yan Wang's pages!
